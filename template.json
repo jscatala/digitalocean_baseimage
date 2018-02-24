@@ -32,6 +32,13 @@
          "DO_USER={{user `username`}}",
          "DO_USER_PASSWD={{user `user_password`}}"
        ]
+     },
+     {
+       "type": "shell",
+       "script": "scripts/ssh_config.sh",
+       "environment_vars": [
+         "SSH_PORT={{user `sshd_port`}}"
+       ]
      }
    ]
 }
