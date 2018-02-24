@@ -9,4 +9,6 @@ su -l $DO_USER -c "chmod 700 ~/.ssh"
 su -l $DO_USER -c "cp /tmp/key.pub ~/.ssh/authorized_keys"
 su -l $DO_USER -c "chmod 600 ~/.ssh/authorized_keys"
 
+#secure root account
+echo "root:$(< /dev/urandom tr -dc A-Za-z0-9 | head -c16)$(openssl rand -base64 16)$(date +%s | sha256sum | base64 | head -c 16)"| chpasswd &> /dev/null
 
