@@ -1,5 +1,6 @@
 {
   "do_token":"",
   "username":"",
-  "user_password":""
+  "user_password":"",
+  "pub_key_path":""
 }

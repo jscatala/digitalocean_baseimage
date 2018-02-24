@@ -8,7 +8,7 @@
       "size": "512mb",
       "ssh_username": "root",
       "droplet_name": "baseCentos7",
-      "snapshot_name": "Base_Centos_7_{{ isotime \"2017_01_02\"}}"
+      "snapshot_name": "Base_Centos_7_{{ isotime \"2006_01_02\"}}"
     }
   ],
   "provisioners": [
@@ -21,11 +21,16 @@
        ]
      },
      {
+       "type": "file",
+       "source": "{{user `pub_key_path`}}",
+       "destination": "/tmp/key.pub"
+     },
+     {
        "type": "shell",
-       "inline": [
-         "adduser {{user `username`}}",
-         "echo \"{{user `user_password`}}\" | passwd {{user `username`}}",
-         "echo \"%{{user `username`}} ALL=(ALL) NOPASSWD: ALL\" >> /etc/sudoers.d/{{user `username`}}" 
+       "script": "scripts/add_user.sh",
+       "environment_vars": [ 
+         "DO_USER={{user `username`}}",
+         "DO_USER_PASSWD={{user `user_password`}}"
        ]
      }
    ]
