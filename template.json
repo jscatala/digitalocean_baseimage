@@ -19,6 +19,14 @@
          "scripts/epel_rhel.sh",
          "scripts/ansible.sh"
        ]
+     },
+     {
+       "type": "shell",
+       "inline": [
+         "adduser {{user `username`}}",
+         "echo \"{{user `user_password`}}\" | passwd {{user `username`}}",
+         "echo \"%{{user `username`}} ALL=(ALL) NOPASSWD: ALL\" >> /etc/sudoers.d/{{user `username`}}" 
+       ]
      }
    ]
 }
