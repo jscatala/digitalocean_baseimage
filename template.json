@@ -1,0 +1,24 @@
+{
+  "builders": [
+    {
+      "type": "digitalocean",
+      "api_token": "{{user `do_token`}}",
+      "image": "centos-7-x64",
+      "region": "sfo2",
+      "size": "512mb",
+      "ssh_username": "root",
+      "droplet_name": "baseCentos7",
+      "snapshot_name": "Base_Centos_7_{{ isotime \"2017_01_02\"}}"
+    }
+  ],
+  "provisioners": [
+     {
+       "type": "shell",
+       "scripts": [
+         "scripts/basic_tools.sh",
+         "scripts/epel_rhel.sh",
+         "scripts/ansible.sh"
+       ]
+     }
+   ]
+}
